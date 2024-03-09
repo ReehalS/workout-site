@@ -13,7 +13,6 @@ const WorkoutForm = () => {
         e.preventDefault()
 
         const workout = {title, load, reps}
-        
         const response = await fetch('/api/workouts', {
         method: 'POST',
         body: JSON.stringify(workout),
@@ -24,17 +23,17 @@ const WorkoutForm = () => {
         const json = await response.json()
 
         if (!response.ok) {
-        setError(json.error)
-        setEmptyFields(json.emptyFields)
+            setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
         else {
-        setError(null)
-        setTitle('')
-        setLoad('')
-        setReps('')
-        setEmptyFields([])
-        console.log('New workout added:', json)
-        dispatch({type: 'CREATE_WORKOUT', payload: json})
+            setError(null)
+            setTitle('')
+            setLoad('')
+            setReps('')
+            setEmptyFields([])
+            console.log('New workout added:', json)
+            dispatch({type: 'CREATE_WORKOUT', payload: json})
         }
 
     }
