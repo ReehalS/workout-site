@@ -10,7 +10,9 @@ const Home = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      if(!user) return
+      if(!user) {
+        return
+      }
 
       const response = await fetch('/api/workouts', {
         headers:{

@@ -4,7 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const WorkoutDetails = ({ workout }) => {
+const WorkoutDetails = ({ workout , key}) => {
   const { dispatch } = useWorkoutsContext()
   const { user } = useAuthContext()
 
