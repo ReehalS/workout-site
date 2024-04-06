@@ -11,6 +11,7 @@ const WorkoutForm = () => {
   const [reps, setReps] = useState('')
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -22,7 +23,9 @@ const WorkoutForm = () => {
 
     const workout = {title, load, reps}
 
-    const response = await fetch('/api/workouts', {
+    const requestString = 'https://workout-site-backend.vercel.app/api/workouts/'
+
+    const response = await fetch(requestString, {
       method: 'POST',
       body: JSON.stringify(workout),
       headers: {

@@ -1,7 +1,6 @@
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-// date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const WorkoutDetails = ({ workout }) => {
@@ -13,7 +12,7 @@ const WorkoutDetails = ({ workout }) => {
       return
     }
 
-    const response = await fetch('/api/workouts/' + workout._id, {
+    const response = await fetch('https://workout-site-backend.vercel.app/api/workouts/' + workout._id, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`

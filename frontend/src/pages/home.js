@@ -4,6 +4,8 @@ import WorkoutForm from "../components/WorkoutForm"
 import {useWorkoutsContext} from '../hooks/useWorkoutsContext'
 import {useAuthContext} from '../hooks/useAuthContext'
 
+const hostURL = process.env.REACT_APP_HOST_URL
+
 const Home = () => {
   const {workouts, dispatch} = useWorkoutsContext();
   const {user} = useAuthContext()
@@ -14,7 +16,7 @@ const Home = () => {
         return
       }
 
-      const response = await fetch('/api/workouts', {
+      const response = await fetch('https://workout-site-backend.vercel.app/api/workouts', {
         headers:{
           'Authorization': `Bearer ${user.token}`
       }
