@@ -13,6 +13,7 @@ const WorkoutDetails = ({ workout }) => {
     }
 
     const response = await fetch('https://workout-site-backend.vercel.app/api/workouts/' + workout._id, {
+      mode:  'cors' ,
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`

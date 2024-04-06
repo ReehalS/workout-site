@@ -17,6 +17,7 @@ const Home = () => {
       }
 
       const response = await fetch('https://workout-site-backend.vercel.app/api/workouts', {
+        mode:  'cors' ,
         headers:{
           'Authorization': `Bearer ${user.token}`
       }

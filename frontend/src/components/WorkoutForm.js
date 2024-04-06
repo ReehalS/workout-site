@@ -26,6 +26,7 @@ const WorkoutForm = () => {
     const requestString = 'https://workout-site-backend.vercel.app/api/workouts/'
 
     const response = await fetch(requestString, {
+      mode:  'cors' ,
       method: 'POST',
       body: JSON.stringify(workout),
       headers: {

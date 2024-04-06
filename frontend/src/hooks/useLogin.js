@@ -13,6 +13,7 @@ export const useLogin = ()=>{
         setLoading(true);
         setError(null);
            const response = await fetch('https://workout-site-backend.vercel.app/api/user/login', {
+            mode:  'cors' ,
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

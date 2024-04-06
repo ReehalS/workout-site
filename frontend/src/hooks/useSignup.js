@@ -12,7 +12,8 @@ export const useSignup = ()=>{
     const signup = async (email, password)=>{
         setLoading(true);
         setError(null);
-           const response = await fetch(hostURL+'/api/user/signup', {
+           const response = await fetch('https://workout-site-backend.vercel.app/api/user/signup', {
+            mode:  'cors' ,
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
