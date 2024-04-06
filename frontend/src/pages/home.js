@@ -3,12 +3,13 @@ import WorkoutDetails from "../components/WorkoutDetails"
 import WorkoutForm from "../components/WorkoutForm"
 import {useWorkoutsContext} from '../hooks/useWorkoutsContext'
 import {useAuthContext} from '../hooks/useAuthContext'
-
-const hostURL = process.env.REACT_APP_HOST_URL
+import axios from 'axios';
 
 const Home = () => {
   const {workouts, dispatch} = useWorkoutsContext();
   const {user} = useAuthContext()
+
+  axios.defaults.withCredentials = true;
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -16,16 +17,19 @@ const Home = () => {
         return
       }
 
-      const response = await fetch('https://workout-site-backend.vercel.app/api/workouts', {
-        mode:  'cors' ,
-        headers:{
-          'Authorization': `Bearer ${user.token}`
-      }
-    })
-      const json = await response.json()
+      try {
+        const response = await axios.get('https://workout-site-backend.vercel.app/api/workouts', {
+          headers:{
+            'Authorization': `Bearer ${user.token}`
+          }
+        })
+        const json = response.data
 
-      if (response.ok) {
-        dispatch({type: 'SET_WORKOUTS', payload: json})
+        if (response.status === 200) {
+          dispatch({type: 'SET_WORKOUTS', payload: json})
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
 

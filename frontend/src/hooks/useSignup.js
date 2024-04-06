@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useAuthContext} from './useAuthContext';
+import axios from 'axios'; // import axios
 
-const hostURL = process.env.REACT_APP_HOST_URL
 
 export const useSignup = ()=>{
     
@@ -9,31 +9,28 @@ export const useSignup = ()=>{
     const [isLoading, setLoading] = useState(null);
     const {dispatch} = useAuthContext();
 
+    axios.defaults.withCredentials = true;
+
     const signup = async (email, password)=>{
         setLoading(true);
         setError(null);
-           const response = await fetch('https://workout-site-backend.vercel.app/api/user/signup', {
-            mode:  'cors' ,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({email, password})
-            });
+        try{
+           const response = await axios.post('https://workout-site-backend.vercel.app/api/user/signup', {email, password});
             const json = await response.json();
 
-            if(!response.ok){
+            if(response.status !== 200){
                 setLoading(false);
                 setError(json.error);
             }
-            if(response.ok){
+            if(response.status ==200){
                 localStorage.setItem('user', JSON.stringify(json))
 
                 dispatch({
                     type: 'LOGIN',
-                    payload: json
-                })
+                })}
+            } catch(error){
                 setLoading(false);
+                setError(error.message);
             }
         
     }

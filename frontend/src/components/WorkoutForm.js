@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 import { useAuthContext } from '../hooks/useAuthContext'
+import axios from 'axios'; 
 
 const WorkoutForm = () => {
   const { dispatch } = useWorkoutsContext()
@@ -11,6 +12,8 @@ const WorkoutForm = () => {
   const [reps, setReps] = useState('')
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
+
+  axios.defaults.withCredentials = true;
   
 
   const handleSubmit = async (e) => {
@@ -23,30 +26,29 @@ const WorkoutForm = () => {
 
     const workout = {title, load, reps}
 
-    const requestString = 'https://workout-site-backend.vercel.app/api/workouts/'
+    try {
+      const response = await axios.post('https://workout-site-backend.vercel.app/api/workouts/', workout, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        }
+      })
+      const json = response.data
 
-    const response = await fetch(requestString, {
-      mode:  'cors' ,
-      method: 'POST',
-      body: JSON.stringify(workout),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${user.token}`
+      if (response.status !== 200) {
+        setError(json.error)
+        setEmptyFields(json.emptyFields)
       }
-    })
-    const json = await response.json()
-
-    if (!response.ok) {
-      setError(json.error)
-      setEmptyFields(json.emptyFields)
-    }
-    if (response.ok) {
-      setTitle('')
-      setLoad('')
-      setReps('')
-      setError(null)
-      setEmptyFields([])
-      dispatch({type: 'CREATE_WORKOUT', payload: json})
+      if (response.status === 200) {
+        setTitle('')
+        setLoad('')
+        setReps('')
+        setError(null)
+        setEmptyFields([])
+        dispatch({type: 'CREATE_WORKOUT', payload: json})
+      }
+    } catch (error) {
+      setError(error.message)
     }
   }
 

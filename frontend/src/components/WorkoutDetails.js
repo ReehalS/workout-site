@@ -2,27 +2,32 @@ import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import axios from 'axios'
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext()
   const { user } = useAuthContext()
+
+  axios.defaults.withCredentials = true;
 
   const handleClick = async () => {
     if (!user) {
       return
     }
 
-    const response = await fetch('https://workout-site-backend.vercel.app/api/workouts/' + workout._id, {
-      mode:  'cors' ,
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${user.token}`
-      }
-    })
-    const json = await response.json()
+    try {
+      const response = await axios.delete('https://workout-site-backend.vercel.app/api/workouts/' + workout._id, {
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      })
+      const json = response.data
 
-    if (response.ok) {
-      dispatch({type: 'DELETE_WORKOUT', payload: json})
+      if (response.status === 200) {
+        dispatch({type: 'DELETE_WORKOUT', payload: json})
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 
