@@ -9,10 +9,11 @@ const userRoutes = require('./routes/user')
 const app = express()
 
 app.use(express.json())
-app.use(cors());
 app.use(cors({
-  origin: 'https://workout-site-pied.vercel.app/'
-}))
+  origin: 'https://workout-site-pied.vercel.app',
+  methods: 'POST, DELETE',
+  credentials: true
+}));
 
 
 app.use((req, res, next) => {
