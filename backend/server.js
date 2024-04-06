@@ -10,12 +10,16 @@ const app = express()
 
 app.use(express.json())
 
-app.use(cors({
-  origin: ["https://workout-site-pied.vercel.app"],
-  methods: ["POST", "DELETE","GET"],
-  credentials: true
-}));
+const options = [
+  cors({
+    origin: '*',
+    methods: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+];
 
+app.use(options);
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
