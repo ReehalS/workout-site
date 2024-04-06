@@ -1,5 +1,5 @@
 {
-    "verson": "1.0.0",
+    "verson": 1,
     "builds":[
         {
             "src" : "*.js",
