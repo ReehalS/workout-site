@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const express = require('express')
-const cors = require('cors');
 const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 const userRoutes = require('./routes/user')
@@ -10,11 +9,6 @@ const app = express()
 
 app.use(express.json())
 
-app.use(cors({
-  origin: ["https://workout-site-pied.vercel.app"],
-  methods: ["POST", "DELETE","GET"],
-  credentials: true
-}));
 
 
 app.use((req, res, next) => {
