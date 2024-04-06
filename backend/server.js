@@ -10,8 +10,8 @@ const app = express()
 
 app.use(express.json())
 app.use(cors({
-  origin: 'https://workout-site-pied.vercel.app',
-  methods: 'POST, DELETE',
+  origin: ['https://workout-site-pied.vercel.app'],
+  methods: ['POST', 'DELETE','GET'],
   credentials: true
 }));
 
