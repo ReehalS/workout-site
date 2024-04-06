@@ -27,7 +27,7 @@ const Home = () => {
     }
 
     fetchWorkouts()
-  }, [dispatch])
+  }, [dispatch, user])
 
   return (
     <div className="home">
