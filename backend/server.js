@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
-//const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 const userRoutes = require('./routes/user')
@@ -20,6 +20,12 @@ app.use(express.json())
 // ];
 
 //app.use(options);
+
+app.use(cors())
+
+app.get('/api/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
