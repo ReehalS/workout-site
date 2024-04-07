@@ -8,20 +8,20 @@ const userRoutes = require('./routes/user.js')
 
 const app = express()
 app.use(express.json())
-//app.use(cors())
+app.use(cors())
 
-const allowedOrigins = ['*'];
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('The CORS policy for this site does not allow access from the specified origin.'), false);
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+// const allowedOrigins = ['*'];
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('The CORS policy for this site does not allow access from the specified origin.'), false);
+//     }
+//   },
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
 
 
 app.use((req, res, next) => {
