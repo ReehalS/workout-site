@@ -15,7 +15,7 @@ export const useSignup = ()=>{
         setLoading(true);
         setError(null);
         try{
-           const response = await axios.post('/api/user/signup', {email, password});
+           const response = await axios.post('https://workout-site-backend.vercel.app/api/user/signup', {email, password});
             const json = await response.json();
 
             if(response.status !== 200){

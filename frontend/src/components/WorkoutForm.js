@@ -27,7 +27,7 @@ const WorkoutForm = () => {
     const workout = {title, load, reps}
 
     try {
-      const response = await axios.post('/api/workouts/', workout, {
+      const response = await axios.post('https://workout-site-backend.vercel.app/api/workouts/', workout, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${user.token}`
