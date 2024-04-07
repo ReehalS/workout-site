@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 //app.use(cors())
 
-const allowedOrigins = ['http://localhost:3000', 'https://workoutbuddy-sr.vercel.app'];
+const allowedOrigins = ['https://workoutbuddy-sr.vercel.app/*'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
