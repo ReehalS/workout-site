@@ -38,7 +38,7 @@ const Home = () => {
         <WorkoutDetails workout={workout} key={workout._id} />
       ))
     ) : (
-      <p>Workouts data is not in the expected format</p>
+      <p>Workouts data unavailable</p>
     )}
   </div>
   <WorkoutForm />
