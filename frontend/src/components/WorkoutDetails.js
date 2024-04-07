@@ -16,7 +16,7 @@ const WorkoutDetails = ({ workout }) => {
     }
 
     try {
-      const response = await axios.delete('https://workout-site-backend.vercel.app/api/workouts/' + workout._id, {
+      const response = await axios.delete('/api/workouts/' + workout._id, {
         headers: {
           'Authorization': `Bearer ${user.token}`
         }

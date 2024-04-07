@@ -18,7 +18,7 @@ const Home = () => {
       }
 
       try {
-        const response = await axios.get('https://workout-site-backend.vercel.app/api/workouts', {
+        const response = await axios.get('/api/workouts', {
           headers:{
             'Authorization': `Bearer ${user.token}`
           }
