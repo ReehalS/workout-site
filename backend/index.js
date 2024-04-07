@@ -3,8 +3,8 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors');
 const mongoose = require('mongoose')
-const workoutRoutes = require('./routes/workouts')
-const userRoutes = require('./routes/user')
+const workoutRoutes = require('./routes/workouts.js')
+const userRoutes = require('./routes/user.js')
 
 const app = express()
 app.use(express.json())
