@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 //app.use(cors())
 
-const allowedOrigins = ['https://workoutbuddy-sr.vercel.app/*'];
+const allowedOrigins = ['*'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -19,7 +19,8 @@ app.use(cors({
       callback(new Error('The CORS policy for this site does not allow access from the specified origin.'), false);
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
 
