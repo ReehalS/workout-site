@@ -32,17 +32,17 @@ const Home = () => {
 
   return (
     <div className="home">
-  <div className="workouts">
-    {Array.isArray(workouts) ? (
-      workouts.map(workout => (
-        <WorkoutDetails workout={workout} key={workout._id} />
-      ))
-    ) : (
-      <p>Workouts data unavailable</p>
-    )}
-  </div>
-  <WorkoutForm />
-</div>
+      <div className="workouts">
+        {Array.isArray(workouts) ? (
+          workouts.map(workout => (
+            <WorkoutDetails workout={workout} key={workout._id} />
+          ))
+        ) : (
+          <p>Workouts data unavailable</p>
+        )}
+      </div>
+      <WorkoutForm />
+    </div>
   )
 }
 

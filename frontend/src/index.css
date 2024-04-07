@@ -67,6 +67,24 @@ header a {
   color: #333;
 }
 
+@media screen and (max-width: 833px) {
+  .home {
+    grid-template-columns: 1fr; 
+  }
+
+  .workouts {
+    order: 2; 
+  }
+}
+
+@media screen and (max-width:1300px) {
+  .home {
+    gap: 30px;
+  }
+}
+
+
+
 /* new workout form */
 label, input {
   display: block;
@@ -107,15 +125,17 @@ nav {
   display: flex;
   align-items: center;
 }
+
 nav a {
   margin-left: 10px;
 }
+
 nav button,
 .notLoggedIn {
   background: #fff;
   color: var(--primary);
   border: 2px solid var(--primary);
-  padding: 6px 10px;
+  padding: 6px 6px;
   border-radius: 4px;
   font-family: "Poppins";
   cursor: pointer;
@@ -123,6 +143,38 @@ nav button,
   margin-left: 10px;
   text-decoration: none;
   max-width: fit-content;
+}
+
+.email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header h1{
+    font-size: 1.5em;
+  }
+
+  nav a {
+    margin: 5px 0;
+    display: block;
+  }
+
+  nav button {
+    margin-top: 5px;
+  }
+  nav .email {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+  }
 }
 
 /* auth forms */
@@ -165,9 +217,17 @@ form.signup, form.login {
 }
 
 .aboutFuture{
-  padding-top: 100px;
+  padding-top: 30px;
 }
 
 .aboutFuture h3{
   color:#1a54ac;
+}
+
+@media screen and (max-width: 768px) {
+  .aboutLinks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: 0.2fr 0.2fr;
+  }
 }

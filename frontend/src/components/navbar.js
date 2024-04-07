@@ -1,8 +1,10 @@
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 
 const Navbar = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const {logout} = useLogout()
   const {user} = useAuthContext()
 
@@ -11,6 +13,24 @@ const Navbar = () => {
     logout()
   }
 
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const truncateEmail = (email) => {
+    if (windowWidth <= 768 && email.includes('@')) {
+        const atIndex = email.indexOf('@');
+        return email.substring(0, atIndex);
+    }
+    return email;
+  };
 
   return (
     <header>
@@ -18,17 +38,20 @@ const Navbar = () => {
         <Link to={user ? "/home" : "/about"}>
           <h1>Workout Buddy</h1>
         </Link>
-        <nav>
-          {user && (<div>
-          <span>{user.email}</span>
-            <button onClick={handleClick}>Logout</button>
-          </div>)}
-          {!user &&(<div>
-            <Link to="/login" className='notLoggedIn'>Login</Link>
-            <Link to="/signup" className='notLoggedIn'>Sign Up</Link>
-          </div>)}
+        <nav className="navbar">
+          {user && (
+              <div>
+              <span className='email'>{truncateEmail(user.email)}</span>
+                  <button onClick={handleClick}>Logout</button>
+              </div>
+          )}
+          {!user && (
+              <div>
+                  <Link to="/login" className='notLoggedIn'>Login</Link>
+                  <Link to="/signup" className='notLoggedIn'>Sign Up</Link>
+              </div>
+          )}
         </nav>
-
       </div>
     </header>
   )
