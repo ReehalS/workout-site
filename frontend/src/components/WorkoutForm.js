@@ -13,8 +13,6 @@ const WorkoutForm = () => {
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
 
-  axios.defaults.withCredentials = true;
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault()

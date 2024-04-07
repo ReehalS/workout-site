@@ -8,20 +8,20 @@ const userRoutes = require('./routes/user.js')
 
 const app = express()
 app.use(express.json())
-//app.use(cors())
+app.use(cors())
 
-const allowedOrigins = ['http://localhost:3000', 'https://workoutbuddy-sr.vercel.app'];
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin))) {
-      callback(null, true);
-    } else {
-      callback(new Error('The CORS policy for this site does not allow access from the specified origin.'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+// const allowedOrigins = ['http://localhost:3000', 'https://workoutbuddy-sr.vercel.app'];
+// app.use(cors({
+//   origin: function(origin, callback) {
+//     if (!origin || allowedOrigins.some(allowedOrigin => origin.startsWith(allowedOrigin))) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('The CORS policy for this site does not allow access from the specified origin.'));
+//     }
+//   },
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
 
 
 
