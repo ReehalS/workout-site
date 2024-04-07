@@ -43,6 +43,6 @@ mongoose.connect(process.env.MONGO_URI)
     console.log(err)
   }) 
 
-// app.get('/', (req, res) => {
-//   res.send("API for workout tracker app.")
-// })
+app.get('/', (req, res) => {
+  res.send("API for workout tracker app.")
+})
