@@ -30,7 +30,7 @@ const Login = () => {
                 required
                 />
             <button disabled={isLoading} type="submit">Log In</button>
-            {error && <div className="error">{error.message}</div>}   
+            {error && <div className="error">{error}</div>}   
         </form>
     )
 }
