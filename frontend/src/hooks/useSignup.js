@@ -9,6 +9,8 @@ export const useSignup = ()=>{
     const [isLoading, setLoading] = useState(null);
     const {dispatch} = useAuthContext();
 
+    axios.defaults.withCredentials = true;
+
     const signup = async (email, password)=>{
         setLoading(true);
         setError(null);
