@@ -10,7 +10,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// const allowedOrigins = ['*'];
+// const allowedOrigins = ['http://localhost:3000'];
 // app.use(cors({
 //   origin: function (origin, callback) {
 //     if (!origin || allowedOrigins.includes(origin)) {
