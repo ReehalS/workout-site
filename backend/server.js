@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const express = require('express')
-const cors = require('cors');
+//const cors = require('cors');
 const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 const userRoutes = require('./routes/user')
@@ -10,16 +10,16 @@ const app = express()
 
 app.use(express.json())
 
-const options = [
-  cors({
-    origin: 'https://workoutbuddy-sr.vercel.app/*',
-    methods: '*',
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-  })
-];
+// const options = [
+//   cors({
+//     origin: 'https://workoutbuddy-sr.vercel.app/*',
+//     methods: '*',
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true,
+//   })
+// ];
 
-app.use(options);
+//app.use(options);
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
