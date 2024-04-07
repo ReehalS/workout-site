@@ -7,9 +7,7 @@ const workoutRoutes = require('./routes/workouts')
 const userRoutes = require('./routes/user')
 
 const app = express()
-
 app.use(express.json())
-
 app.use(cors())
 
 // const allowedOrigins = ['http://localhost:3000'];
