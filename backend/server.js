@@ -12,7 +12,7 @@ app.use(express.json())
 
 const options = [
   cors({
-    origin: '*',
+    origin: 'https://workoutbuddy-sr.vercel.app/*',
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
