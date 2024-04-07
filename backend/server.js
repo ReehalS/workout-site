@@ -10,22 +10,11 @@ const app = express()
 
 app.use(express.json())
 
-// const options = [
-//   cors({
-//     origin: 'https://workoutbuddy-sr.vercel.app/*',
-//     methods: '*',
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//     credentials: true,
-//   })
-// ];
-
-//app.use(options);
-
-app.use(cors())
-
-app.get('/api/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-})
+let corsOptions = { 
+  origin : ['http://localhost:5500', 'https://workoutbuddy-sr.vercel.app'] 
+} 
+app.use(cors(corsOptions))
+S
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
@@ -48,5 +37,5 @@ mongoose.connect(process.env.MONGO_URI)
   }) 
 
 app.get('/', (req, res) => {
-  res.send('API for workout tracker app.')
+  res.json("API for workout tracker app.")
 })
