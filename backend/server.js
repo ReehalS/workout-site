@@ -8,13 +8,11 @@ const userRoutes = require('./routes/user')
 
 const app = express()
 
-app.use(express.json())
-
 let corsOptions = { 
-  origin : ['http://localhost:5500', 'https://workoutbuddy-sr.vercel.app'] 
+  origin : ['http://localhost:3000', 'https://workoutbuddy-sr.vercel.app'] 
 } 
 app.use(cors(corsOptions))
-S
+
 
 app.use((req, res, next) => {
   console.log(req.path, req.method)
