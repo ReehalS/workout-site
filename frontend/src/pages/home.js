@@ -3,36 +3,32 @@ import WorkoutDetails from "../components/WorkoutDetails"
 import WorkoutForm from "../components/WorkoutForm"
 import {useWorkoutsContext} from '../hooks/useWorkoutsContext'
 import {useAuthContext} from '../hooks/useAuthContext'
-import axios from 'axios';
+
 
 const Home = () => {
-  const {workouts, dispatch} = useWorkoutsContext();
-  const {user} = useAuthContext()
-
-  useEffect(() => {
-    const fetchWorkouts = async () => {
-      if(!user) {
-        return
-      }
-
-      try {
-        const response = await axios.get('https://workout-site-backend.vercel.app/api/workouts', {
+    const {workouts, dispatch} = useWorkoutsContext();
+    const {user} = useAuthContext()
+  
+    useEffect(() => {
+      const fetchWorkouts = async () => {
+        if(!user) {
+          return
+        }
+  
+        const response = await fetch('https://workout-site-backend.vercel.app/api/workouts', {
           headers:{
             'Authorization': `Bearer ${user.token}`
-          }
-        })
-        const json = response.data
-
-        if (response.status === 200) {
+        }
+      })
+        const json = await response.json()
+  
+        if (response.ok) {
           dispatch({type: 'SET_WORKOUTS', payload: json})
         }
-      } catch (error) {
-        console.error(error);
       }
-    }
-
-    fetchWorkouts()
-  }, [dispatch, user])
+  
+      fetchWorkouts()
+    }, [dispatch, user])
 
   return (
     <div className="home">

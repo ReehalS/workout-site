@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 import { useAuthContext } from '../hooks/useAuthContext'
-import axios from 'axios'; 
 
 const WorkoutForm = () => {
   const { dispatch } = useWorkoutsContext()
@@ -13,7 +12,6 @@ const WorkoutForm = () => {
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
 
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -24,29 +22,27 @@ const WorkoutForm = () => {
 
     const workout = {title, load, reps}
 
-    try {
-      const response = await axios.post('https://workout-site-backend.vercel.app/api/workouts/', workout, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.token}`
-        }
-      })
-      const json = response.data
+    const response = await fetch('https://workout-site-backend.vercel.app/api/workouts', {
+      method: 'POST',
+      body: JSON.stringify(workout),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
+      }
+    })
+    const json = await response.json()
 
-      if (response.status !== 200) {
-        setError(json.error)
-        setEmptyFields(json.emptyFields)
-      }
-      if (response.status === 200) {
-        setTitle('')
-        setLoad('')
-        setReps('')
-        setError(null)
-        setEmptyFields([])
-        dispatch({type: 'CREATE_WORKOUT', payload: json})
-      }
-    } catch (error) {
-      setError(error.message)
+    if (!response.ok) {
+      setError(json.error)
+      setEmptyFields(json.emptyFields)
+    }
+    if (response.ok) {
+      setTitle('')
+      setLoad('')
+      setReps('')
+      setError(null)
+      setEmptyFields([])
+      dispatch({type: 'CREATE_WORKOUT', payload: json})
     }
   }
 
