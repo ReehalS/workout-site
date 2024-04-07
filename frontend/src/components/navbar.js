@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <header>
       <div className="container">
-        <Link to="/">
+        <Link to={user ? "/home" : "/about"}>
           <h1>Workout Buddy</h1>
         </Link>
         <nav>
@@ -24,8 +24,8 @@ const Navbar = () => {
             <button onClick={handleClick}>Logout</button>
           </div>)}
           {!user &&(<div>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/login" className='notLoggedIn'>Login</Link>
+            <Link to="/signup" className='notLoggedIn'>Sign Up</Link>
           </div>)}
         </nav>
 

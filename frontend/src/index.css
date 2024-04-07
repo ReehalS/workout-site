@@ -110,7 +110,8 @@ nav {
 nav a {
   margin-left: 10px;
 }
-nav button {
+nav button,
+.notLoggedIn {
   background: #fff;
   color: var(--primary);
   border: 2px solid var(--primary);
@@ -120,6 +121,8 @@ nav button {
   cursor: pointer;
   font-size: 1em;
   margin-left: 10px;
+  text-decoration: none;
+  max-width: fit-content;
 }
 
 /* auth forms */
@@ -129,4 +132,42 @@ form.signup, form.login {
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+}
+
+/* about page*/
+.aboutHeading {
+  color:#1a54ac;
+}
+
+.aboutButtons {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  margin-top: 10px; 
+}
+
+.aboutButtons .aboutLinks {
+  flex-basis: 100%;
+}
+
+.aboutLinks {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  grid-template-rows: 0.2fr 0.2fr;
+}
+
+.aboutLinks p {
+  align-self: center;
+}
+
+.aboutLinks .notLoggedIn {
+  align-self: start; 
+}
+
+.aboutFuture{
+  padding-top: 100px;
+}
+
+.aboutFuture h3{
+  color:#1a54ac;
 }
