@@ -9,8 +9,6 @@ const Home = () => {
   const {workouts, dispatch} = useWorkoutsContext();
   const {user} = useAuthContext()
 
-  axios.defaults.withCredentials = true;
-
   useEffect(() => {
     const fetchWorkouts = async () => {
       if(!user) {

@@ -8,7 +8,6 @@ const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext()
   const { user } = useAuthContext()
 
-  axios.defaults.withCredentials = true;
 
   const handleClick = async () => {
     if (!user) {
