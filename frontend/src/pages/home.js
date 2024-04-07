@@ -18,7 +18,7 @@ const Home = () => {
       }
 
       try {
-        const response = await axios.get('/api/workouts', {
+        const response = await axios.get('https://workout-site-backend.vercel.app/api/workouts', {
           headers:{
             'Authorization': `Bearer ${user.token}`
           }
@@ -38,13 +38,17 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="workouts">
-        {workouts && workouts.map(workout => (
-          <WorkoutDetails workout={workout} key={workout._id} />
-        ))}
-      </div>
-      <WorkoutForm />
-    </div>
+  <div className="workouts">
+    {Array.isArray(workouts) ? (
+      workouts.map(workout => (
+        <WorkoutDetails workout={workout} key={workout._id} />
+      ))
+    ) : (
+      <p>Workouts data is not in the expected format</p>
+    )}
+  </div>
+  <WorkoutForm />
+</div>
   )
 }
 
