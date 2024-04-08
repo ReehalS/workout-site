@@ -122,8 +122,8 @@ const GoalForm = () => {
                 {index !== emptyFields.length - 1 && ', '}
               </React.Fragment>
             ))}. </li>
-            <li>{timeLimitCheck && (<p>Time limit must be greater than 0 days and less than 366 days.</p>)}</li>
-            <li>{numWorkoutsCheck && (<p>Number of Workouts must be greater than 0.</p>)}</li>
+            {timeLimitCheck && (<li><p>Time limit must be greater than 0 days and less than 366 days.</p></li>)}
+            {numWorkoutsCheck && (<li><p>Number of Workouts must be greater than 0.</p></li>)}
           </ul>
           </div>
         )}
