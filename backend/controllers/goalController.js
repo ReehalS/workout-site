@@ -47,10 +47,12 @@ const createGoal = async (req, res) => {
   let timeLimitCheck = false
   if(timeLimit <=0 || timeLimit >=366){
     timeLimitCheck = true
+    emptyFields.push('Time Limit')
   }
   let numWorkoutsCheck = false
   if(numWorkouts<=0){
     numWorkoutsCheck = true
+    emptyFields.push('Number of Workouts')
   }
 
   if(emptyFields.length > 0){
