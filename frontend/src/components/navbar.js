@@ -41,14 +41,17 @@ const Navbar = () => {
         <nav className="navbar">
           {user && (
               <div>
-              <span className='email'>{truncateEmail(user.email)}</span>
-                  <button onClick={handleClick}>Logout</button>
+                <span className='email'>{truncateEmail(user.email)}</span>
+                <Link to="/goal" className="goalsLink">Goals</Link>
+                <Link to="/home" className="goalsLink">Workouts</Link>
+                <button onClick={handleClick}>Logout</button>         
               </div>
           )}
           {!user && (
               <div>
                   <Link to="/login" className='notLoggedIn'>Login</Link>
                   <Link to="/signup" className='notLoggedIn'>Sign Up</Link>
+                  '
               </div>
           )}
         </nav>

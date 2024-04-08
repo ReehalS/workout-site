@@ -41,7 +41,7 @@ const Home = () => {
           <p>Workouts data unavailable</p>
         )}
       </div>
-      <WorkoutForm />
+      <WorkoutForm className="form"/>
     </div>
   )
 }

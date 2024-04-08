@@ -4,7 +4,9 @@ import Navbar from './components/navbar'
 import Login from './pages/login';
 import Signup from './pages/signup';
 import About from './pages/about';
+import Goal from './pages/goal.js';
 import { useAuthContext } from './hooks/useAuthContext';
+import { GoalContextProvider } from './context/GoalContext';
 
 function App() {
   const {user} =useAuthContext();
@@ -21,7 +23,7 @@ function App() {
               />
             <Route
               path="/home"
-              element={<Home /> }
+              element={user ? <Home/> : <Navigate to="/login"/>}
               />
               <Route
               path="/login"
@@ -34,6 +36,12 @@ function App() {
               <Route
                 path="/about"
                 element={<About/>}
+              />
+              <Route
+              path="/goal"
+              element={user ?   <GoalContextProvider>
+                                  <Goal />
+                                </GoalContextProvider> : <Navigate to="/signup"/>}
               />
           </Routes>
         </div>

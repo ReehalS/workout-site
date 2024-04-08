@@ -1,4 +1,4 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
 import { useAuthContext } from '../hooks/useAuthContext'
 
@@ -34,7 +34,7 @@ const WorkoutForm = () => {
 
     if (!response.ok) {
       setError(json.error)
-      setEmptyFields(json.error)
+      setEmptyFields(json.emptyFields)
     }
     if (response.ok) {
       setTitle('')
@@ -55,7 +55,7 @@ const WorkoutForm = () => {
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-        className={emptyFields.includes('title') ? 'error' : ''}
+        className={emptyFields.includes('Exercise Title') ? 'error' : ''}
       />
 
       <label>Load (in kg):</label>
@@ -63,7 +63,7 @@ const WorkoutForm = () => {
         type="number"
         onChange={(e) => setLoad(e.target.value)}
         value={load}
-        className={emptyFields.includes('load') ? 'error' : ''}
+        className={emptyFields.includes('Load') ? 'error' : ''}
       />
 
       <label>Reps:</label>
@@ -71,11 +71,23 @@ const WorkoutForm = () => {
         type="number"
         onChange={(e) => setReps(e.target.value)}
         value={reps}
-        className={emptyFields.includes('reps') ? 'error' : ''}
+        className={emptyFields.includes('Reps') ? 'error' : ''}
       />
 
       <button>Add Workout</button>
-      {error && <div className="error">{error}</div>}
+      {error && (
+        <div className="error">
+          {error}
+            {emptyFields.map((field, index) => (
+              <React.Fragment key={field}>
+                {field} 
+                {index !== emptyFields.length - 1 && ', '}
+              </React.Fragment>
+            ))}
+          </div>
+        )}
+
+      
     </form>
   )
 }
