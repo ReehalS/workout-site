@@ -35,22 +35,13 @@ const createGoal = async (req, res) => {
   if(!title){
     emptyFields.push('Goal Title')
   }
-  if(!timeLimit){
-    emptyFields.push('Time Limit')
-  }
-  if(!numWorkouts){
-    emptyFields.push('Number of Workouts')
-  }
-  if(repeating ===null){
-    emptyFields.push('Repeating')
-  }
   let timeLimitCheck = false
-  if(timeLimit <=0 || timeLimit >=366){
+  if(timeLimit <=0 || timeLimit >=366 || !timeLimit){
     timeLimitCheck = true
     emptyFields.push('Time Limit')
   }
   let numWorkoutsCheck = false
-  if(numWorkouts<=0){
+  if(numWorkouts<=0 || !numWorkouts){
     numWorkoutsCheck = true
     emptyFields.push('Number of Workouts')
   }
