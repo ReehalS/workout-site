@@ -39,9 +39,7 @@ function App() {
               />
               <Route
               path="/goal"
-              element={user ?   <GoalContextProvider>
-                                  <Goal />
-                                </GoalContextProvider> : <Navigate to="/signup"/>}
+              element={user ? <Goal /> : <Navigate to="/signup"/>}
               />
           </Routes>
         </div>
